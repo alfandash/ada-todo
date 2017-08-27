@@ -12,6 +12,7 @@ const jwt = require('../helper/jwtHelper');
 
 
 exports.signup = (req,res) =>{
+  console.log('body',req.body);
   var secretKeyLength = process.env.SECRET_LENGTH;
   generateSalt(secretKeyLength,(secret)=>{
     var passRaw = {
@@ -27,7 +28,11 @@ exports.signup = (req,res) =>{
       }
       User.create(add)
       .then((response)=> {
-        res.send(response)
+        var success = {
+          "success": {},
+          "message": `Register username ${response.username} success`
+        }
+        res.send(success)
       })
       .catch((error)=>{
         res.send(error)

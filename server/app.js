@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 require('dotenv').config()
+var cors = require('cors')
 
 
 var app = express();
@@ -32,7 +33,7 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 var todo = require('./routes/todo')
 
-
+app.use(cors())
 app.use('/', index);
 app.use('/users', users);
 app.use('/todo', todo)

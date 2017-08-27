@@ -6,14 +6,15 @@ const Task = require('../model/task');
 const jwt = require('../helper/jwtHelper');
 
 exports.findById = (req,res)=>{
-  var query = {'id_user':`${req.query.id}`}
-  Task.find(query)
-  .populate('id_user')
-  .then((documents)=>{
-    res.send(documents)
-  })
-  .catch((error)=>{
-    res.send(error)
+  jwt.decode(req.headers.token,(err,decoded)=>{
+    var query = {'id_user':`${decoded.id}`}
+    Task.find(query)
+    .then((documents)=>{
+      res.send(documents)
+    })
+    .catch((error)=>{
+      res.send(error)
+    })
   })
 }
 
@@ -50,6 +51,7 @@ exports.edit = (req,res)=>{
 }
 
 exports.editStatus = (req,res)=>{
+  console.log('masuk edit status',req.query);
   var queryId = {'_id':`${req.query.id_task}`}
   var taskUpdate = {
     status: `${req.query.status}`,
