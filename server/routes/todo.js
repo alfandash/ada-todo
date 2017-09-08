@@ -6,7 +6,10 @@ const todoController = require('../controllers/todo');
 
 // add controllers
 const jwt = require('../helper/jwtHelper');
-router.use(jwt.loginCheck)
+
+
+
+//router.use(jwt.loginCheck)
 
 router.get('/', todoController.findById)
 router.post('/', todoController.create)

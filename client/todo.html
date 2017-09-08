@@ -10,11 +10,28 @@
   <!-- require axios -->
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
+  <!-- Plugin CSS -->
+  <link href="assets/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+
   <link rel="stylesheet" href="assets/css/custom.css">
 </head>
 <body>
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">ADA:ToDo</a>
+      </div>
+      <ul class="nav navbar-nav navbar-right">
+        <li><button class="btn btn-danger navbar-btn logout">Logout</button></li>
+        </ul>
+    </div>
+
+  </nav>
+
+
   <section class="task" id="task">
-    <div class="container text-center">
+    <div class="container">
       <!-- Example Tables Card -->
       <div class="card mb-3">
         <div class="card-header">
@@ -24,7 +41,7 @@
           <h4><strong>Add new</strong> Task:</h4>
           <div class="panel-body">
             <!--  Lgin form-->
-            <form class="form-add-task" action="" method="post">
+            <form class="form-add-task" action="#" method="post">
               <div class="form-group">
                 <h5 id="form-add-status" style="display:none"></h5>
               </div>
@@ -54,7 +71,7 @@
           </div>
         </div>
         <div class="card-footer small text-muted">
-          Updated yesterday at 11:59 PM
+
         </div>
       </div>
     </div>
@@ -75,8 +92,8 @@
 
   <!-- plugin javascript -->
   <script src="assets/jquery-easing/jquery.easing.min.js"></script>
-
-  </script>
+  <script src="assets/datatables/jquery.dataTables.js"></script>
+  <script src="assets/datatables/dataTables.bootstrap4.js"></script>
 
   <!-- Script for this index -->
   <script src="assets/js/todo.js"></script>

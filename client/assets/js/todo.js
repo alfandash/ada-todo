@@ -29,6 +29,11 @@ $('form.form-add-task').submit(eventHandler=>{
   })
 })
 
+$('.logout').click((function() {
+  localStorage.removeItem('adatodotoken')
+  window.location.href = "/index.html"
+}))
+
 
 function destroy(id){
   $.ajax({
@@ -50,8 +55,11 @@ function update_status(id){
       task: $(`#status_task_${id}`).val()
     },
     success: function(response){
-      console.log(response);
-      loadTask()
+        $('#form-add-status').fadeOut('fast')
+        $('#form-add-status').empty()
+        $('#form-add-status').append(`Task Berhasil di update`)
+        $('#form-add-status').fadeIn('slow')
+        loadTask()
     }
   })
 
@@ -65,18 +73,21 @@ function loadTask(){
     type: 'GET',
     headers: adatodotoken,
     success: function(response) {
-      console.log(`response get task`,response);
-      $('#data-table').fadeOut('slow')
-      $('#data-table').fadeIn('slow')
+      if (response.error === 'belum login') {
+        window.location.href = "/"
+      }
+      // $('#data-table').fadeOut('slow')
+      // $('#data-table').fadeIn('slow')
       $('#task-data').empty()
+      var num = 1;
       response.forEach((task)=>{
         var created_at = new Date(task.created_at)
         var updated_at = new Date(task.updated_at)
         $('#task-data').append(`<tr>`)
-        $('#task-data').append(`<td>${1}</td>`)
+        $('#task-data').append(`<td>${num++}</td>`)
         $('#task-data').append(`<td>${task.task}</td>`)
-        $('#task-data').append(`<td>${created_at}</td>`)
-        $('#task-data').append(`<td>${updated_at}</td>`)
+        $('#task-data').append(`<td>${created_at.toDateString()}</td>`)
+        $('#task-data').append(`<td>${updated_at.toDateString()}</td>`)
         if (task.status==='done') {
           $('#task-data').append(`
             <td>

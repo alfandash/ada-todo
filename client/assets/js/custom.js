@@ -1,4 +1,6 @@
 
+
+
 $('form.form-register').submit(eventHandler=>{
   eventHandler.preventDefault()
   $.ajax({
